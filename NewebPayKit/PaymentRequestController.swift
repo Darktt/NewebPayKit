@@ -32,6 +32,13 @@ public class PaymentRequestController: UIViewController
     
     private weak var webView: WKWebView!
     
+    private lazy var uiDelegate: UIDelegate = {
+        
+        let delegate = UIDelegate(self)
+        
+        return delegate
+    }()
+    
     private lazy var navigationDelegate: NavigationDelegate = {
         
         let delegate = NavigationDelegate(self)
@@ -87,7 +94,7 @@ public class PaymentRequestController: UIViewController
         
         guard self.navigationController != nil else {
             
-            fatalError("CreditCardController must contain in UINavigationController.")
+            fatalError("PaymentRequestController must contain in UINavigationController.")
         }
         
         let configuration = WKWebViewConfiguration()
@@ -95,6 +102,7 @@ public class PaymentRequestController: UIViewController
         prefernces.javaScriptEnabled = true
         
         let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.uiDelegate = self.uiDelegate
         webView.navigationDelegate = self.navigationDelegate
         webView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -186,6 +194,72 @@ fileprivate extension PaymentRequestController
         }
         
         decisionHandler(policy)
+    }
+}
+
+// MARK: - PaymentRequestController.UIDelegate -
+
+fileprivate extension PaymentRequestController
+{
+    class UIDelegate: NSObject, WKUIDelegate
+    {
+        // MARK: - Properties -
+        
+        fileprivate weak var viewController: PaymentRequestController!
+        
+        // MARK: - Methods -
+        // MARK: Initial Method
+        
+        fileprivate convenience init(_ viewController: PaymentRequestController)
+        {
+            self.init()
+            self.viewController = viewController
+        }
+        
+        // MARK: - Delegate Methods -
+        
+        func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void)
+        {
+            let actionTitle: String = "OK".localized
+            let alertActionHandler: (UIAlertAction) -> Void = {
+                
+                _ in
+                
+                completionHandler()
+            }
+            let alertAction = UIAlertAction(title: actionTitle, style: .default, handler: alertActionHandler)
+            
+            let title: String? = frame.request.url?.host
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(alertAction)
+            
+            self.viewController.present(alertController, animated: true)
+        }
+        
+        func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void)
+        {
+            let alertActionHandler: (UIAlertAction) -> Void = {
+                
+                action in
+                
+                let result: Bool = (action.style == .default)
+                
+                completionHandler(result)
+            }
+            let acceptTitle: String = "OK".localized
+            let acceptAction = UIAlertAction(title: acceptTitle, style: .default, handler: alertActionHandler)
+            let cancelTitle: String = "Cancel".localized
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: alertActionHandler)
+            
+            let title: String? = frame.request.url?.host
+            
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(acceptAction)
+            alertController.addAction(cancelAction)
+            
+            self.viewController.present(alertController, animated: true)
+        }
     }
 }
 

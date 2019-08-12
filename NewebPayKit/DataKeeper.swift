@@ -16,3 +16,13 @@ internal class DataKeeper
     
     internal var hashIV: String = ""
 }
+
+internal extension Bundle
+{
+    var identifier: String {
+        
+        let identifier = self.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
+        
+        return identifier
+    }
+}
