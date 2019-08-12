@@ -1,9 +1,8 @@
 //
 //  NewebPayKit.h
-//  NewebPayKit
 //
-//  Created by Eden Li on 2019/8/9.
-//  Copyright © 2019 Fulldot. All rights reserved.
+//  Created by Darktt on 2019/8/9.
+//  Copyright © 2019 Darktt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

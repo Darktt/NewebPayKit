@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CreditCardDemo
 //
-//  Created by Eden Li on 2019/6/26.
-//  Copyright © 2019 Fulldot. All rights reserved.
+//  Created by Darktt on 2019/6/26.
+//  Copyright © 2019 Darktt. All rights reserved.
 //
 
 import UIKit

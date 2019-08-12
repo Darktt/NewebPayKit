@@ -139,6 +139,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F2205FAE2300F2C700EEA748 /* Resource files */ = {
+			isa = PBXGroup;
+			children = (
+				F2A07D3822FD775600A99104 /* Localizable.string */,
+				F2A07CFD22FD0D4000A99104 /* Info.plist */,
+			);
+			name = "Resource files";
+			sourceTree = "<group>";
+		};
 		F285511A22C34EA500D9D094 = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +186,14 @@
 			children = (
 				F2A07D1222FD11E200A99104 /* Extensions */,
 				F2A07CFC22FD0D4000A99104 /* NewebPayKit.h */,
+				F2A07D0E22FD0FF500A99104 /* DataKeeper.swift */,
+				F2A07D0822FD0DB300A99104 /* NewebPayKitDefines.swift */,
 				F2A07D0622FD0D6900A99104 /* Payment.swift */,
-				F2A07D0A22FD0F3700A99104 /* PaymentParameters.swift */,
 				F2A07D0C22FD0FBF00A99104 /* PaymentError.swift */,
+				F2A07D0A22FD0F3700A99104 /* PaymentParameters.swift */,
 				F2A07D1022FD10FB00A99104 /* PaymentRequestController.swift */,
 				F2A07D1522FD125F00A99104 /* PaymentRequestControllerDelegate.swift */,
-				F2A07D0822FD0DB300A99104 /* NewebPayKitDefines.swift */,
-				F2A07D0E22FD0FF500A99104 /* DataKeeper.swift */,
-				F2A07CFD22FD0D4000A99104 /* Info.plist */,
-				F2A07D3822FD775600A99104 /* Localizable.string */,
+				F2205FAE2300F2C700EEA748 /* Resource files */,
 			);
 			path = NewebPayKit;
 			sourceTree = "<group>";

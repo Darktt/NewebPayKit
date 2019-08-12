@@ -1,9 +1,8 @@
 //
 //  ArrayExtension.swift
-//  CreditCard
 //
-//  Created by Eden Li on 2019/6/27.
-//  Copyright © 2019 Fulldot. All rights reserved.
+//  Created by Darktt on 2019/6/27.
+//  Copyright © 2019 Darktt. All rights reserved.
 //
 
 import Foundation
